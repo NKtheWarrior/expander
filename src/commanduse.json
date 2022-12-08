@@ -1,0 +1,42 @@
+{
+  "username": "NKtheWarrior#5904",
+  "userId": "750296670490722324",
+  "guildId": "794448129331167234",
+  "guidName": "Nsubale",
+  "channelId": "794453528059576320",
+  "channelName": "rules-and-rugulations",
+  "date": "Sun Dec 04 2022 20:03:18 GMT+0530 (India Standard Time)",
+  "command": "thumbnail",
+  "commandUse": 1
+}
+function jsonReader(filePath, cb) {
+        fs.readFile(filePath, "utf-8", (err, fileData) => {
+          if (err) {
+            return cb && cb(err);
+          }
+          try {
+            const object = JSON.parse(fileData);
+            return cb && cb(null, object);
+          } catch {
+            return cb && cb(err);
+          }
+        });
+      }
+      jsonReader("./commanduse.json", (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          data.commandUse += 1;
+          fs.writeFile(
+            "./commanduse.json",
+            JSON.stringify(newCommandUse, null, 2),
+            (err) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log("Data wrote sucessfully");
+              }
+            }
+          );
+        }
+      });
